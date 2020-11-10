@@ -2,12 +2,12 @@ pipeline {
 	agent any
 	stages {
 		stage ("One"){
-			step {
+			steps {
 				sh 'pwd'
 			}
 		}
 		stage ("Two"){
-			step {
+			steps {
 				sh 'ls -lrt'
 			}
 		}
