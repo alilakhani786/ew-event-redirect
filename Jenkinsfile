@@ -13,12 +13,12 @@ pipeline {
 		skipDefaultCheckout(true)
 	}
 	stages {
-		stage ("Checkout"){
+		stage ("Checkout EW ${ew_id}"){
 			steps {
 				checkout scm
 			}
 		}
-		stage ("Pack EW"){
+		stage ("Package"){
                         steps {
 				sh 'echo EWiD: ${ew_id}'
                                 sh 'ls -lrt'
@@ -26,9 +26,9 @@ pipeline {
                                 sh 'ls -lrt'
                         }		
 		}
-		stage ("Update EW"){
+		stage ("Update"){
 			steps {
-				sh "akamai edgeworkers list-groups --section default"
+				sh "akamai edgeworkers upload --bundle ew-helloworld.tgz ${ew_id} --section default"
 			}
 		}
 	}
