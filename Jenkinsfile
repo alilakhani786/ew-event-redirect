@@ -1,5 +1,14 @@
 pipeline {
-	agent any
+	environment {
+		pm_config = 'yohanlakhani.com'
+		ew_id = '4740'
+    	}
+	agent {
+        	docker {
+        	    	image 'akamai/shell'
+        	}
+
+    	}
 	options {
 		skipDefaultCheckout(true)
 	}
@@ -9,16 +18,17 @@ pipeline {
 				checkout scm
 			}
 		}
-		stage ("One"){
-			steps {
-				sh 'pwd'
-			}
+		stage ("Pack EW"){
+                        steps {
+				sh 'EWID: ${edgerc}'
+                                sh 'ls -lrt'
+                                sh 'tar -czvf ew-helloworld.tgz *'
+                                sh 'ls -lrt'
+                        }		
 		}
-		stage ("Two"){
+		stage ("Update EW"){
 			steps {
-				sh 'ls -lrt'
-				sh 'tar -czvf ew-helloworld.tgz *'
-				sh 'ls -lrt'
+				sh "akamai edgeworkers list-groups --section default"
 			}
 		}
 	}
