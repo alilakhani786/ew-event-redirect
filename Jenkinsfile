@@ -13,7 +13,7 @@ pipeline {
 		skipDefaultCheckout(true)
 	}
 	stages {
-		stage ("Checkout EW ${ew_id}"){
+		stage ("Checkout EW"){
 			steps {
 				checkout scm
 			}
