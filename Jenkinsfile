@@ -33,7 +33,7 @@ pipeline {
 		}
                 stage ("Activate Staging"){
                         steps {
-                                sh "akamai edgeworkers activate ew-helloworld.tgz ${ew_id} --network STAGING 2.0 --section default"
+                                sh "akamai edgeworkers activate ew-helloworld.tgz ${ew_id} --network STAGING 1.1 --section default"
                         }
                 }
 	}
