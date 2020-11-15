@@ -20,7 +20,7 @@ pipeline {
 		}
 		stage ("Pack EW"){
                         steps {
-				sh 'EWID: ${edgerc}'
+				sh 'EWID: ${ew_id}'
                                 sh 'ls -lrt'
                                 sh 'tar -czvf ew-helloworld.tgz *'
                                 sh 'ls -lrt'
