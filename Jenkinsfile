@@ -22,6 +22,8 @@ pipeline {
                         steps {
 				sh 'echo EWiD: ${ew_id}'
                                 sh 'ls -lrt'
+				sh 'rm ew-helloworld.tgz'
+				sh 'ls -lrt'	
                                 sh 'tar -czvf ew-helloworld.tgz *'
                                 sh 'ls -lrt'
                         }		
@@ -33,7 +35,7 @@ pipeline {
 		}
                 stage ("Activate Staging"){
                         steps {
-                                sh "akamai edgeworkers activate ew-helloworld.tgz ${ew_id} STAGING 1.1 --section default"
+                                sh "akamai edgeworkers activate ew-helloworld.tgz ${ew_id} STAGING 1.2 --section default"
                         }
                 }
 	}
