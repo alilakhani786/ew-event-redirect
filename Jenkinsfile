@@ -2,6 +2,7 @@ pipeline {
 	environment {
 		pm_config = 'yohanlakhani.com'
 		ew_id = '4740'
+		ew_ver = '1.5'
     	}
 	agent {
         	docker {
@@ -33,10 +34,20 @@ pipeline {
 				sh "akamai edgeworkers upload --bundle ew-helloworld.tgz ${ew_id} --section default"
 			}
 		}
-                stage ("Activate Staging"){
-                        steps {
-                                sh "akamai edgeworkers --section default activate ${ew_id} STAGING 1.4"
-                        }
-                }
+        stage ("Activate: Staging"){
+            steps {
+                sh "akamai edgeworkers --section default activate ${ew_id} STAGING ${ew_ver}"
+            }
+        }
+        stage ("Test: Staging"){
+            steps {
+                sh "akamai edgeworkers --section default activate ${ew_id} STAGING ${ew_ver}"
+            }
+        }
+        stage ("Activate: Prod"){
+            steps {
+                sh "akamai edgeworkers --section default activate ${ew_id} PROD ${ew_ver}"
+            }
+        }				
 	}
 }

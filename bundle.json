@@ -1,5 +1,5 @@
 {
-    "edgeworker-version": "1.4", 
+    "edgeworker-version": "1.5", 
     "description" : "Hello World",
     "misc" : {
         "author" : "Ali Lakhani"
