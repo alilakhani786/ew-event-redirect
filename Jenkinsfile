@@ -41,12 +41,16 @@ pipeline {
         }
         stage ("Test: Staging"){
             steps {
-                sh "akamai edgeworkers --section default activate ${ew_id} STAGING ${ew_ver}"
+                sh "------------------------------------------------------------------"
+				sh "------------------* DONT FORGET! DO YOUR TEST *-------------------"
+				sh "------------------------------------------------------------------"
+				sh "----------------------------* Yay *-------------------------------"
+				sh "------------------------------------------------------------------"
             }
         }
         stage ("Activate: Prod"){
             steps {
-                sh "akamai edgeworkers --section default activate ${ew_id} PROD ${ew_ver}"
+                sh "akamai edgeworkers --section default activate ${ew_id} PRODUCTION ${ew_ver}"
             }
         }				
 	}
