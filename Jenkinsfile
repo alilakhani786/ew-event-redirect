@@ -35,7 +35,7 @@ pipeline {
 		}
                 stage ("Activate Staging"){
                         steps {
-                                sh "akamai edgeworkers activate ${ew_id} STAGING 1.2 --section default"
+                                sh "akamai edgeworkers --section default activate ${ew_id} STAGING 1.4"
                         }
                 }
 	}
