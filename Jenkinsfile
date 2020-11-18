@@ -34,24 +34,26 @@ pipeline {
 				sh "akamai edgeworkers upload --bundle ew-helloworld.tgz ${ew_id} --section default"
 			}
 		}
-        stage ("Activate: Staging"){
+        stage ("Staging: Activate"){
             steps {
                 sh "akamai edgeworkers --section default activate ${ew_id} STAGING ${ew_ver}"
             }
         }
-        stage ("Test: Staging"){
+        stage ("Staging: Test"){
             steps {
-                sh "echo ------------------------------------------------------------------"
 				sh "echo ------------------* DONT FORGET! DO YOUR TEST *-------------------"
-				sh "echo ------------------------------------------------------------------"
-				sh "echo ----------------------------* Yay *-------------------------------"
-				sh "echo ------------------------------------------------------------------"
             }
         }
-        stage ("Activate: Prod"){
+        stage ("Prod: Activation Submit"){
             steps {
                 sh "akamai edgeworkers --section default activate ${ew_id} PRODUCTION ${ew_ver}"
             }
-        }				
+        }
+		stage ("Prod: Activation Status"){
+            steps {
+                sh "chmod 777 status.sh"
+				sh "./status.sh"
+            }
+        }							
 	}
 }
