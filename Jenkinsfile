@@ -1,8 +1,8 @@
 pipeline {
 	environment {
 		pm_config = 'yohanlakhani.com'
-		ew_id = '4740'
-		ew_ver = '1.8'
+		ew_id = '4775'
+		ew_ver = '1.0'
     	}
 	agent {
         	docker {
@@ -23,16 +23,16 @@ pipeline {
                         steps {
 				sh 'echo EWiD: ${ew_id}'
                                 sh 'ls -lrt'
-				sh 'rm ew-helloworld.tgz'
+				sh 'rm ali-event-redir-demo.tgz'
 				sh 'ls -lrt'	
-                                sh 'tar -czvf ew-helloworld.tgz *'
+                                sh 'tar -czvf ali-event-redir-demo.tgz *'
                                 sh 'ls -lrt'
                         }		
 		}
 		stage ("Update"){
 			steps {
-				sh "akamai edgeworkers upload --bundle ew-helloworld.tgz ${ew_id} --section default"
-				sh 'rm ew-helloworld.tgz'
+				sh "akamai edgeworkers upload --bundle ali-event-redir-demo.tgz ${ew_id} --section default"
+				sh 'rm ali-event-redir-demo.tgz'
 			}
 		}
         stage ("Staging: Activate"){
