@@ -1,5 +1,5 @@
-// Hello World Example
+// Ali Redirect Demo
 
 export function onClientRequest(request) {
-  request.respondWith(200, {'X-HelloWorld': ['From EdgeWorkers']}, '<html><body><h1>Hello World From Akamai EdgeWorkers</h1></body></html>');
+	request.respondWith(302, {'Location': ['https://www.singtel.com/personal/products-services/mobile/phones/apple-iphone-12']}, '');
 }

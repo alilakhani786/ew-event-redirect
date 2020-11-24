@@ -1,6 +1,6 @@
 {
-    "edgeworker-version": "1.8", 
-    "description" : "Hello World",
+    "edgeworker-version": "1.0", 
+    "description" : "Event Redirect Demo",
     "misc" : {
         "author" : "Ali Lakhani"
      }
