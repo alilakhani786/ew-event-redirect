@@ -2,7 +2,7 @@ pipeline {
 	environment {
 		pm_config = 'yohanlakhani.com'
 		ew_id = '4775'
-		ew_ver = '1.0'
+		ew_ver = '1.1'
     	}
 	agent {
         	docker {
