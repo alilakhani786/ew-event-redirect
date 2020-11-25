@@ -1,5 +1,5 @@
 // Ali Redirect Demo
 
 export function onClientRequest(request) {
-	request.respondWith(302, {'Location': ['http://www.apple.com']}, '');
+	request.respondWith(302, {'Location': ['http://www.singtel.com']}, '');
 }

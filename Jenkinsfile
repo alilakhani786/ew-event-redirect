@@ -1,8 +1,15 @@
+def COLOR_MAP = [
+    'SUCCESS': 'good', 
+    'FAILURE': 'danger',
+]
+def getBuildUser() {
+    return currentBuild.rawBuild.getCause(Cause.UserIdCause).getUserId()
+}
 pipeline {
 	environment {
 		pm_config = 'yohanlakhani.com'
 		ew_id = '4775'
-		ew_ver = '1.1'
+		ew_ver = '1.2'
     	}
 	agent {
         	docker {
@@ -16,6 +23,9 @@ pipeline {
 	stages {
 		stage ("Checkout EW"){
 			steps {
+                slackSend channel: '#ali-playground',
+                color: COLOR_MAP[currentBuild.currentResult],
+                message: "*STARTED* Job ${env.JOB_NAME} build ${env.BUILD_NUMBER} EW: ${ew_id} EW_Ver: ${ew_ver}"
 				checkout scm
 			}
 		}
