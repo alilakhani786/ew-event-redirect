@@ -33,6 +33,7 @@ pipeline {
                         steps {
 				sh 'echo EWiD: ${ew_id}'
                                 sh 'ls -lrt'
+				sh 'touch ali-event-redir-demo.tgz'
 				sh 'rm ali-event-redir-demo.tgz'
 				sh 'ls -lrt'	
                                 sh 'tar -czvf ali-event-redir-demo.tgz *'
