@@ -9,7 +9,7 @@ pipeline {
 	environment {
 		pm_config = 'yohanlakhani.com'
 		ew_id = '4775'
-		ew_ver = '1.2'
+		ew_ver = '1.3'
     	}
 	agent {
         	docker {
@@ -25,7 +25,7 @@ pipeline {
 			steps {
                 slackSend channel: '#ali-playground',
                 color: COLOR_MAP[currentBuild.currentResult],
-                message: "*STARTED* Job ${env.JOB_NAME} build ${env.BUILD_NUMBER} EW: ${ew_id} EW_Ver: ${ew_ver}"
+                message: "*STARTED* Akamai Pipeline Job: ${env.JOB_NAME} Build: ${env.BUILD_NUMBER} EW: ${ew_id} EW_Ver: ${ew_ver}"
 				checkout scm
 			}
 		}
@@ -59,12 +59,19 @@ pipeline {
         stage ("Prod: Activation Submit"){
             steps {
                 sh "akamai edgeworkers --section default activate ${ew_id} PRODUCTION ${ew_ver}"
+				slackSend channel: '#ali-playground',
+                color: COLOR_MAP[currentBuild.currentResult],
+                message: "Activation request submitted: ${env.JOB_NAME} Build: ${env.BUILD_NUMBER} EW: ${ew_id} EW_Ver: ${ew_ver}"
+				
             }
         }
 		stage ("Prod: Activation Status"){
             steps {
                 sh "chmod 777 status.sh"
 				sh "./status.sh"
+				slackSend channel: '#ali-playground',
+                color: COLOR_MAP[currentBuild.currentResult],
+                message: "*STARTED* Akamai Pipeline Job: ${env.JOB_NAME} Build: ${env.BUILD_NUMBER} EW: ${ew_id} EW_Ver: ${ew_ver} COMPLETED successfully"
             }
         }							
 	}
