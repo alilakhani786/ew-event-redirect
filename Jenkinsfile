@@ -9,7 +9,7 @@ pipeline {
 	environment {
 		pm_config = 'yohanlakhani.com'
 		ew_id = '4775'
-		ew_ver = '1.3'
+		ew_ver = '1.4'
     	}
 	agent {
         	docker {
@@ -71,7 +71,7 @@ pipeline {
 				sh "./status.sh"
 				slackSend channel: '#ali-playground',
                 color: COLOR_MAP[currentBuild.currentResult],
-                message: "*STARTED* Akamai Pipeline Job: ${env.JOB_NAME} Build: ${env.BUILD_NUMBER} EW: ${ew_id} EW_Ver: ${ew_ver} COMPLETED successfully"
+                message: "Akamai Pipeline Job: ${env.JOB_NAME} Build: ${env.BUILD_NUMBER} EW: ${ew_id} EW_Ver: ${ew_ver} *COMPLETED* successfully"
             }
         }							
 	}
