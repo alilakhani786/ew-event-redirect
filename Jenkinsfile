@@ -8,8 +8,8 @@ def getBuildUser() {
 pipeline {
 	environment {
 		pm_config = 'codeclub.yohanlakhani.com'
-		ew_id = '4775'
-		ew_ver = '2.0'
+		ew_id = '5026'
+		ew_ver = '1.0'
     	}
 	agent {
         	docker {
