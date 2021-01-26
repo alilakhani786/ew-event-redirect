@@ -9,7 +9,7 @@ pipeline {
 	environment {
 		pm_config = 'codeclub.yohanlakhani.com'
 		ew_id = '4775'
-		ew_ver = '1.9'
+		ew_ver = '2.0'
     	}
 	agent {
         	docker {
@@ -42,13 +42,13 @@ pipeline {
 		}
 		stage ("Update"){
 			steps {
-				sh "akamai edgeworkers upload --bundle ali-event-redir-demo.tgz ${ew_id} --section default"
+				sh "akamai edgeworkers upload --bundle ali-event-redir-demo.tgz ${ew_id} --section Default"
 				sh 'rm ali-event-redir-demo.tgz'
 			}
 		}
         stage ("Staging: Activate"){
             steps {
-                sh "akamai edgeworkers --section default activate ${ew_id} STAGING ${ew_ver}"
+                sh "akamai edgeworkers --section Default activate ${ew_id} STAGING ${ew_ver}"
             }
         }
         stage ("Staging: Test"){
@@ -58,7 +58,7 @@ pipeline {
         }
         stage ("Prod: Activation Submit"){
             steps {
-                sh "akamai edgeworkers --section default activate ${ew_id} PRODUCTION ${ew_ver}"
+                sh "akamai edgeworkers --section Default activate ${ew_id} PRODUCTION ${ew_ver}"
 				slackSend channel: '#ali-playground',
                 color: COLOR_MAP[currentBuild.currentResult],
                 message: "Activation request submitted: ${env.JOB_NAME} Build: ${env.BUILD_NUMBER} EW: ${ew_id} EW_Ver: ${ew_ver}"
