@@ -9,7 +9,7 @@ pipeline {
 	environment {
 		pm_config = 'codeclub.yohanlakhani.com'
 		ew_id = '5026'
-		ew_ver = '1.2'
+		ew_ver = '1.3'
     	}
 	agent {
         	docker {
@@ -31,13 +31,13 @@ pipeline {
 		}
 		stage ("Package"){
                         steps {
-				sh 'echo EWiD: ${ew_id}'
-                                sh 'ls -lrt'
-				sh 'touch ali-event-redir-demo.tgz'
-				sh 'rm ali-event-redir-demo.tgz'
-				sh 'ls -lrt'	
-                                sh 'tar -czvf ali-event-redir-demo.tgz *'
-                                sh 'ls -lrt'
+							sh 'echo EWiD: ${ew_id}'
+                            sh 'ls -lrt'
+							sh 'touch ali-event-redir-demo.tgz'
+							sh 'rm ali-event-redir-demo.tgz'
+							sh 'ls -lrt'	
+                        	sh 'tar -czvf ali-event-redir-demo.tgz *'
+                            sh 'ls -lrt'
                         }		
 		}
 		stage ("Update"){
