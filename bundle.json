@@ -1,5 +1,5 @@
 {
-    "edgeworker-version": "1.1", 
+    "edgeworker-version": "1.2", 
     "description" : "Event Redirect Demo",
     "misc" : {
         "author" : "Ali Lakhani"

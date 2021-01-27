@@ -9,7 +9,7 @@ pipeline {
 	environment {
 		pm_config = 'codeclub.yohanlakhani.com'
 		ew_id = '5026'
-		ew_ver = '1.1'
+		ew_ver = '1.2'
     	}
 	agent {
         	docker {
